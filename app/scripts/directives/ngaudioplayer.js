@@ -65,7 +65,9 @@ angular.module('ngAudioPlayerApp')
 
     };
 
-    this.percentElapsed = function(duration) {
+    this.percentElapsed = function(duration, currentTime) {
+
+      return (Math.floor((100 / duration) * currentTime)) || 0;
 
     };
 
@@ -101,6 +103,7 @@ angular.module('ngAudioPlayerApp')
 
             scope.currentTime = audioCtrl.timeElapsed(ct);
             scope.remainingTime = audioCtrl.timeRemaining(d, ct);
+            scope.percentElapsed = audioCtrl.percentElapsed(d, ct);
 
           });
         });
