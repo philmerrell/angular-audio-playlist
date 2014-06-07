@@ -1,6 +1,8 @@
 <audio src="http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3"></audio>
-<span style="float: left;">{{currentTime}}</span><span>{{percentLoaded+'%'}}</span><span class="float: right;">{{remainingTime}}</span>
+<span style="float: left;">{{currentTime}}</span><span class="float: right;">{{remainingTime}}</span>
 <div style="height: 80px; width: 100%" class="audioContainer">
   <div style="width: 80px; height: 80px; float: left;"><button type="button" class="btn btn-lg btn-success" ng-href="#"><span ng-bind-html="player.buttonIcon"></span></button></div>
   <div style="float: left;">Some Artist<br/>Some Song</div>
 </div>
+<span>Loaded: {{percentLoaded+'%'}}</span>
+<span>Elapsed: {{percentElapsed+'%'}}</span>
