@@ -12,15 +12,27 @@ angular.module('ngAudioPlayerApp')
 
     var me = this;
 
-    $scope.player = {
-      buttonIcon: '<i class="fa fa-play fa-lg"></i>'
+    this.playerControls = {
+
+      playIcon: '<i class="fa fa-play fa-lg"></i>',
+      pauseIcon: '<i class="fa fa-pause fa-lg"></i>',
+      loadingIcon: '<i class="fa fa-circle-o-notch fa-spin fa-lg"></i>'
+
     };
-    //$scope.player.buttonIcon = playerSettings.playIcon;
+
+    $scope.player = {
+      buttonIcon: this.playerControls.playIcon
+    };
 
 
     $scope.playlist = [
-      {artist: 'Dark Swallows', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'}
+      {order: 0, name: 'David Bowie', song: 'John, I\'m only dancing', src: 'audio/bowie.mp3'},
+      {order: 1, name: 'The Black Angels', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'},
+      {order: 2, name: 'The Beatles', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'}
+
     ];
+    console.log($scope.playlist[0]);
+    $scope.currentlyPlaying = $scope.playlist[0];
 
     this.timeElapsed = function (currentTime) {
 
@@ -72,17 +84,32 @@ angular.module('ngAudioPlayerApp')
     };
 
     this.toggleAudio = function() {
-      var audio = $scope.audio;
 
-      if(audio.paused) {
-        audio.play();
+      if($scope.audio.paused) {
+        $scope.audio.play();
       } else {
-        audio.pause();
+        $scope.audio.pause();
       }
 
     };
 
+    $scope.playTrack = function(track) {
+      $scope.audio.src = track.src;
+      $scope.currentlyPlaying = track;
+      $scope.audio.load();
+      $scope.audio.play();
+    };
+
+    this.nextTrack = function() {
+
+    };
+
+    this.previousTrack = function() {
+
+    };
+
   }])
+
   .directive('ngAudioPlayer', function () {
     return {
       templateUrl: 'views/ng-audio-player.html',
@@ -93,6 +120,8 @@ angular.module('ngAudioPlayerApp')
 
         var audio = element.find('audio')[0];
         scope.audio = audio;
+
+        audio.src = scope.currentlyPlaying.src;
 
         audio.addEventListener('timeupdate', function() {
 
@@ -111,7 +140,7 @@ angular.module('ngAudioPlayerApp')
         audio.addEventListener('playing', function() {
 
           scope.$apply(function() {
-              scope.player.buttonIcon = '<i class="fa fa-pause fa-lg"></i>';
+              scope.player.buttonIcon = audioCtrl.playerControls.pauseIcon;
           });
 
         });
@@ -119,8 +148,17 @@ angular.module('ngAudioPlayerApp')
         audio.addEventListener('pause', function() {
 
           scope.$apply(function() {
-            scope.player.buttonIcon = '<i class="fa fa-play fa-lg"></i>'
+            scope.player.buttonIcon = audioCtrl.playerControls.playIcon;
           });
+        });
+
+        audio.addEventListener('ended', function() {
+
+          var nextTrack = scope.currentlyPlaying.order + 1;
+
+          scope.currentlyPlaying = scope.playlist[nextTrack];
+          audio.load();
+          audio.play();
         });
 
         audio.addEventListener('progress', function() {
@@ -135,6 +173,12 @@ angular.module('ngAudioPlayerApp')
 
         });
 
+        audio.addEventListener('waiting', function() {
+          scope.$apply(function() {
+            scope.player.buttonIcon = audioCtrl.playerControls.loadingIcon;
+          });
+        });
+
         var button = element.find('button');
 
         button.bind('click', function() {
@@ -142,6 +186,8 @@ angular.module('ngAudioPlayerApp')
           audioCtrl.toggleAudio();
 
         });
+
+
 
       }
     };
