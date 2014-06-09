@@ -5,6 +5,7 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
+    'com.mountcrystal.audioPlaylist',
     'ngRoute'
   ])
   .config(function ($routeProvider) {
