@@ -1,16 +1,38 @@
+
+/*
+**  IDEAS:
+      - make directive attribs that control width and height
+
+*/
 'use strict';
 
-angular.module('ngAudioPlayerApp')
+angular.module('com.mountcrystal.audioPlaylist', [])
 
-  // .constants('playerSettings', {
-  //   playIcon: '<i class="fa fa-play fa-lg"></i>',
-  //   pauseIcon: '<i class="fa fa-play fa-lg"></i>',
-  //   loadingIcon: ''
-  // })
 
-  .controller('AudioController', ['$scope', '$attrs', function($scope, $attrs) {
+  .factory('audioPlaylistService', function(){
+    var me = this;
+
+    this.playlist = [
+        {order: 0, name: 'David Bowie', song: 'John, I\'m only dancing', src: 'audio/bowie.mp3', url: '', twitter: '',},
+        {order: 1, name: 'The Black Angels', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'},
+        {order: 2, name: 'The Beatles', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'}
+    ];
+
+    return {
+
+      setPlaylist: function(newPlaylist) {
+        me.playlist = newPlaylist;
+      },
+      getPlaylist: function() {
+        return me.playlist;
+      }
+    };
+  })
+
+  .controller('audioPlaylistController', ['$scope', '$attrs', 'audioPlaylistService', function($scope, $attrs, audioPlaylistService) {
 
     var me = this;
+    $scope.currentlyPlaying = null;
 
     this.playerControls = {
 
@@ -25,14 +47,14 @@ angular.module('ngAudioPlayerApp')
     };
 
 
-    $scope.playlist = [
-      {order: 0, name: 'David Bowie', song: 'John, I\'m only dancing', src: 'audio/bowie.mp3'},
-      {order: 1, name: 'The Black Angels', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'},
-      {order: 2, name: 'The Beatles', song: 'Winter 68', src: 'http://reviewstalker.com/wp-content/uploads/2011/10/03-Winter-68.mp3'}
+    this.loadPlaylist = function() {
 
-    ];
-    console.log($scope.playlist[0]);
-    $scope.currentlyPlaying = $scope.playlist[0];
+      $scope.playlist = audioPlaylistService.getPlaylist();
+      $scope.currentlyPlaying = $scope.playlist[0];
+
+    };
+
+    this.loadPlaylist();
 
     this.timeElapsed = function (currentTime) {
 
@@ -93,6 +115,43 @@ angular.module('ngAudioPlayerApp')
 
     };
 
+    this.nextTrack = function() {
+
+
+      if($scope.playlist.length < $scope.currentlyPlaying.order) {
+
+        var nextTrack = $scope.currentlyPlaying.order + 1;
+
+        $scope.currentlyPlaying = $scope.playlist[nextTrack];
+        $scope.audio.load();
+        $scope.audio.play();
+
+      } else {
+
+        alert('all done');
+        $scope.currentlyPlaying = $scope.playlist[0];
+        $scope.audio.pause();
+
+      }
+
+
+    };
+
+    $scope.previousTrack = function() {
+
+      var previousTrack = $scope.currentlyPlaying.order - 1;
+
+      if(previousTrack < 0) {
+        $scope.currentlyPlaying = $scope.playlist[0];
+      } else {
+
+        $scope.audio.src = $scope.playlist[previousTrack].src;
+        $scope.currentlyPlaying = $scope.playlist[previousTrack];
+        $scope.audio.load();
+        $scope.audio.play();
+      }
+    };
+
     $scope.playTrack = function(track) {
       $scope.audio.src = track.src;
       $scope.currentlyPlaying = track;
@@ -100,22 +159,14 @@ angular.module('ngAudioPlayerApp')
       $scope.audio.play();
     };
 
-    this.nextTrack = function() {
-
-    };
-
-    this.previousTrack = function() {
-
-    };
-
   }])
 
-  .directive('ngAudioPlayer', function () {
+  .directive('audioPlaylist', ['audioPlaylistService', function (audioPlaylistService) {
     return {
-      templateUrl: 'views/ng-audio-player.html',
-      restrict: 'A',
+      templateUrl: 'views/audio-playlist.html',
+      restrict: 'E',
       scope: true,
-      controller: 'AudioController',
+      controller: 'audioPlaylistController',
       link: function postLink(scope, element, attrs, audioCtrl) {
 
         var audio = element.find('audio')[0];
@@ -154,11 +205,8 @@ angular.module('ngAudioPlayerApp')
 
         audio.addEventListener('ended', function() {
 
-          var nextTrack = scope.currentlyPlaying.order + 1;
+          audioCtrl.nextTrack();
 
-          scope.currentlyPlaying = scope.playlist[nextTrack];
-          audio.load();
-          audio.play();
         });
 
         audio.addEventListener('progress', function() {
@@ -186,9 +234,19 @@ angular.module('ngAudioPlayerApp')
           audioCtrl.toggleAudio();
 
         });
+        // TODO: More research on third parameter, "objectEquality": http://stackoverflow.com/questions/13594732/maxing-out-on-digest-iterations
+        scope.$watch(function () { return audioPlaylistService.getPlaylist(); },
+          function (newPlaylist) {
+            if (typeof newPlaylist !== 'undefined') {
+
+              audioCtrl.loadPlaylist(newPlaylist);
+
+            }
+          }, true
+        );
 
 
 
       }
     };
-  });
+  }]);
