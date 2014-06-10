@@ -1,1 +1,44 @@
-<div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="#">Home</a></li><li><a ng-href="#">About</a></li><li><a ng-href="#">Contact</a></li></ul><h3 class="text-muted">ngAudioPlayer</h3></div><div class="jumbotron"><p><span ng-audio-player=""></span></p></div><div class="row marketing"><h4>HTML5 Boilerplate</h4><p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p><h4>Angular</h4><p>AngularJS is a toolset for building the framework most suited to your application development.</p><h4>Karma</h4><p>Spectacular Test Runner for JavaScript.</p></div><div class="footer"><p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p></div>
+<div class="header"><ul class="nav nav-pills pull-right"><!-- <li class="active"><a ng-href="#">Home</a></li> --><li><a ng-href="#">Templates</a></li><li><a ng-href="#">Tutorial</a></li></ul><h3 class="text-muted">angular-audio-playlist</h3></div><select class="form-control" ng-model="myRadPlaylist" ng-options="playlist.list as playlist.name for playlist in playlists"><option value="">Select a Playlist</select><div class="jumbotron"><p><audio-playlist playlist="myRadPlaylist"></audio-playlist></p></div><div ng-repeat="item in myRadPlaylist">{{item.name}}</div><div class="marketing"><h2><i class="fa fa-list"></i>&nbsp;&nbsp;Make Playlists</h2><p class="lead">Inject <code>angularPlaylistService</code> to any controller and set a playlist or single track to a master audio player.</p><button ng-click="playThisList()">Swap Playlist</button></div><pre>
+    <code ng-non-bindable="">
+      angular.module('myApp')
+        .controller('SomeCtrl', function ($scope, ngAudioPlayerService) {
+
+          $scope.playThisList = function() {
+
+            audioPlaylistService.setPlaylist([
+              {
+                order: 0,
+                name: 'Prince',
+                song: 'John, I\'m only dancing',
+                src: 'audio/bowie.mp3',
+                url: 'http://url.to/some.mp3',
+              },
+              {
+                order: 1,
+                name: 'The Gap Band',
+                song: 'Winter 68',
+                src: 'http://url.to/some.mp3'
+              },
+              {
+                order: 2,
+                name: 'Roy Orbison',
+                song: 'Winter 68',
+                src: 'http://url.to/some.mp3'
+              }
+            ], 2);
+          };
+        });
+    </code>
+  </pre><h2><i class="fa fa-cog"></i>&nbsp;&nbsp;Themeable</h2><p class="lead">Customize your own template and implement only the features you care about or try one of the <a href="#">pre-made templates</a>.</p><pre>
+    <code ng-non-bindable="">
+      &lt;div>
+        &lt;div>
+          &lt;button type="button">
+            &lt;span ng-bind-html="player.buttonIcon">&lt;/span>
+          &lt;/button>
+        &lt;/div>
+        &lt;div>{{currentlyPlaying.name}}&lt;/div>
+        &lt;div>{{currentlyPlaying.song}}&lt;/div>
+      &lt;/div>
+    </code>
+  </pre><div class="footer"><h4>ngAudioPlayer</h4>This project was created and maintained by <a style="font-size: 1.2em" href="http://mountcrystal.com">Mount Crystal</a>. <span class="social-icon"><i style="color: #4099FF" class="fa fa-twitter fa-3x"></i></span> <span class="social-icon"><i style="" class="fa fa-github fa-3x"></i></span></div>
