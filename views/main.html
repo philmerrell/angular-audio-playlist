@@ -6,27 +6,26 @@
   </ul>
   <h3 class="text-muted">angular-audio-playlist</h3>
 </div>
-
+<select class="form-control" ng-model="myRadPlaylist" ng-options="playlist.list as playlist.name for playlist in playlists">
+  <option value="">Select a Playlist</option>
+</select>
 <div class="jumbotron">
-  <p><audio-playlist></audio-playlist></p>
+  <p><audio-playlist playlist="myRadPlaylist"></audio-playlist></p>
 </div>
 
+<div ng-repeat="item in myRadPlaylist">{{item.name}}</div>
 <div class="marketing">
   <h2><i class="fa fa-list"></i>&nbsp;&nbsp;Make Playlists</h2>
-  <p class="lead">Import <code>ngAudioPlayerService</code> to any controller and set a playlist or single track to a master audio player.</p>
+  <p class="lead">Inject <code>angularPlaylistService</code> to any controller and set a playlist or single track to a master audio player.</p>
   <button ng-click="playThisList()">Swap Playlist</div>
   <pre>
     <code ng-non-bindable>
       angular.module('myApp')
         .controller('SomeCtrl', function ($scope, ngAudioPlayerService) {
-          $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-          ];
 
           $scope.playThisList = function() {
-            ngAudioPlayerService.setPlaylist([
+
+            audioPlaylistService.setPlaylist([
               {
                 order: 0,
                 name: 'Prince',
