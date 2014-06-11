@@ -1,4 +1,9 @@
-<div class="header"><ul class="nav nav-pills pull-right"><!-- <li class="active"><a ng-href="#">Home</a></li> --><li><a ng-href="#">Templates</a></li><li><a ng-href="#">Tutorial</a></li></ul><h3 class="text-muted">angular-audio-playlist</h3></div><select class="form-control" ng-model="myRadPlaylist" ng-options="playlist.list as playlist.name for playlist in playlists"><option value="">Select a Playlist</select><div class="jumbotron"><p><audio-playlist playlist="myRadPlaylist"></audio-playlist></p></div><div ng-repeat="item in myRadPlaylist">{{item.name}}</div><div class="marketing"><h2><i class="fa fa-list"></i>&nbsp;&nbsp;Make Playlists</h2><p class="lead">Inject <code>angularPlaylistService</code> to any controller and set a playlist or single track to a master audio player.</p><button ng-click="playThisList()">Swap Playlist</button></div><pre>
+<div class="header"><ul class="nav nav-pills pull-right"><!-- <li class="active"><a ng-href="#">Home</a></li> --><li><a ng-href="#">Templates</a></li><li><a ng-href="#">Tutorial</a></li></ul><h3 class="text-muted">angular-audio-playlist</h3></div><div class="jumbotron"><p><audio-playlist playlist="myRadPlaylist"></audio-playlist></p><div class=""><select class="form-control" ng-model="myRadPlaylist" ng-options="playlist.list as playlist.name for playlist in playlists"><option value="">Select a Playlist</select></div></div><div class="marketing"><h2><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;Easy to Use</h2><p class="lead">angular-audio-playlist is easy to implement and use</p><pre>
+    <code ng-non-bindable="">
+      &lt;audio-playlist list="myRadPlaylist">&lt;/audio-playlist>
+
+    </code>
+  </pre><h2><i class="fa fa-list"></i>&nbsp;&nbsp;Make Playlists</h2><p class="lead">Inject <code>audioPlaylistService</code> to any controller and set a playlist or single track to a master audio player.</p><button ng-click="playThisList()">Swap Playlist</button></div><pre>
     <code ng-non-bindable="">
       angular.module('myApp')
         .controller('SomeCtrl', function ($scope, ngAudioPlayerService) {
