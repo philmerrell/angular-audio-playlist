@@ -1,11 +1,11 @@
 'use strict';
 
 angular
-  .module('ngAudioPlayerApp', [
+  .module('audioPlaylistApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'com.mountcrystal.audioPlaylist',
+    'com.philmerrell.audioPlaylist',
     'ngRoute'
   ])
   .config(function ($routeProvider) {
