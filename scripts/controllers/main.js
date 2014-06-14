@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngAudioPlayerApp')
+angular.module('audioPlaylistApp')
   .controller('MainCtrl', function ($scope, audioPlaylistService) {
     $scope.myRadPlaylist = [
         {order: 0, name: 'David Bowie', song: 'John, I\'m only dancing', src: 'audio/bowie.mp3', url: '', twitter: '',},
