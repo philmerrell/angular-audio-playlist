@@ -1,7 +1,11 @@
 
 /*
 **  IDEAS:
-      - make directive attribs that control width and height
+      - Refactor to override <audio> element and add another directive for a playlist="" attrib
+
+      <audio playlist="myRadPlaylist">
+
+      
 
 */
 'use strict';
