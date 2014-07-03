@@ -1,11 +1,10 @@
 
 /*
-**  IDEAS:
+**  TODO:
       - Refactor to override <audio> element and add another directive for a playlist="" attrib
-
       <audio playlist="myRadPlaylist">
 
-
+      - Remove directives dependency to Twitter Bootstrap. E.g., Buttons, list-group, list-group-item, active, etc..
 
 */
 'use strict';
