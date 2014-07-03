@@ -5,7 +5,7 @@
 
       <audio playlist="myRadPlaylist">
 
-      
+
 
 */
 'use strict';
@@ -113,9 +113,9 @@ angular.module('com.philmerrell.audioPlaylist', [])
 
     this.playerControls = {
 
-      playIcon: '<i class="fa fa-play fa-lg"></i>',
-      pauseIcon: '<i class="fa fa-pause fa-lg"></i>',
-      loadingIcon: '<i class="fa fa-circle-o-notch fa-spin fa-lg"></i>'
+      playIcon: '<span class="fa-play"></span>',
+      pauseIcon: '<span class="fa-pause"></span>',
+      loadingIcon: '<span class="fa-circle-o-notch fa-spin"></span>'
 
     };
 
