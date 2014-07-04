@@ -141,9 +141,9 @@ angular.module('com.philmerrell.audioPlaylist', [])
 
     this.playerControls = {
 
-      playIcon: '<span class="fa-play"></span>',
-      pauseIcon: '<span class="fa-pause"></span>',
-      loadingIcon: '<span class="fa-circle-o-notch fa-spin"></span>'
+      playIcon: '<span class="player-play"></span>',
+      pauseIcon: '<span class="player-pause"></span>',
+      loadingIcon: '<span class="player-circle-o-notch player-spin"></span>'
 
     };
 
