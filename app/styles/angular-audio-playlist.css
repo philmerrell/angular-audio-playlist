@@ -65,7 +65,7 @@ a.playlist-group-track {
 }
 /* Player controls font icons */
 @font-face {
-  font-family: 'font-awesome';
+  font-family: 'player-icons';
   src:url('../fonts/font-awesome.eot?-lgcqqe');
   src:url('../fonts/font-awesome.eot?#iefix-lgcqqe') format('embedded-opentype'),
     url('../fonts/font-awesome.woff?-lgcqqe') format('woff'),
@@ -75,8 +75,8 @@ a.playlist-group-track {
   font-style: normal;
 }
 
-[class^="fa-"], [class*=" fa-"] {
-  font-family: 'font-awesome';
+[class^="player-"], [class*=" player-"] {
+  font-family: 'player-icons';
   speak: none;
   font-size: 1.2em;
   font-style: normal;
@@ -90,41 +90,41 @@ a.playlist-group-track {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.fa-step-backward:before {
+.player-step-backward:before {
   content: "\f048";
 }
-.fa-fast-backward:before {
+.player-fast-backward:before {
   content: "\f049";
 }
-.fa-backward:before {
+.player-backward:before {
   content: "\f04a";
 }
-.fa-play:before {
+.player-play:before {
   content: "\f04b";
 }
-.fa-pause:before {
+.player-pause:before {
   content: "\f04c";
 }
-.fa-stop:before {
+.player-stop:before {
   content: "\f04d";
 }
-.fa-forward:before {
+.player-forward:before {
   content: "\f04e";
 }
-.fa-fast-forward:before {
+.player-fast-forward:before {
   content: "\f050";
 }
-.fa-step-forward:before {
+.player-step-forward:before {
   content: "\f051";
 }
-.fa-eject:before {
+.player-eject:before {
   content: "\f052";
 }
-.fa-circle-o-notch:before {
+.player-circle-o-notch:before {
   content: "\f1ce";
 }
 
-.fa-spin {
+.player-spin {
   -webkit-animation: spin 2s infinite linear;
   -moz-animation: spin 2s infinite linear;
   -o-animation: spin 2s infinite linear;

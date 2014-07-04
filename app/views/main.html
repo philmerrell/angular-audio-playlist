@@ -1,8 +1,8 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
     <!-- <li class="active"><a ng-href="#">Home</a></li> -->
-    <li><a ng-href="#">Templates</a></li>
-    <li><a ng-href="#">Tutorial</a></li>
+    <!-- <li><a ng-href="#">Templates</a></li>
+    <li><a ng-href="#">Tutorial</a></li> -->
   </ul>
   <h3 class="text-muted">angular-audio-playlist</h3>
 </div>
@@ -19,13 +19,13 @@
   <p class="lead">angular-audio-playlist is easy to implement and use</p>
   <pre>
     <code ng-non-bindable>
-      &lt;audio-playlist list="myRadPlaylist">&lt;/audio-playlist></p>
+      &lt;audio-playlist playlist="myRadPlaylist">&lt;/audio-playlist></p>
 
     </code>
   </pre>
-  <h2><i class="fa fa-list"></i>&nbsp;&nbsp;Make Playlists</h2>
+  <h2><i class="fa fa-list"></i>&nbsp;&nbsp;Swap Playlists From Anywhere</h2>
   <p class="lead">Inject <code>audioPlaylistService</code> to any controller and set a playlist or single track to a master audio player.</p>
-  <button ng-click="playThisList()">Swap Playlist</div>
+  <!-- <button ng-click="playThisList()">Swap Playlist</div> -->
   <pre>
     <code ng-non-bindable>
       angular.module('myApp')
@@ -36,7 +36,7 @@
             audioPlaylistService.setPlaylist([
               {
                 order: 0,
-                name: 'Prince',
+                name: 'David Bowie',
                 song: 'John, I\'m only dancing',
                 src: 'audio/bowie.mp3',
                 url: 'http://url.to/some.mp3',
@@ -44,13 +44,13 @@
               {
                 order: 1,
                 name: 'The Gap Band',
-                song: 'Winter 68',
+                song: 'You Dropped a Bomb on me',
                 src: 'http://url.to/some.mp3'
               },
               {
                 order: 2,
                 name: 'Roy Orbison',
-                song: 'Winter 68',
+                song: 'Only the Lonely',
                 src: 'http://url.to/some.mp3'
               }
             ], 2);
@@ -59,7 +59,8 @@
     </code>
   </pre>
   <h2><i class="fa fa-cog"></i>&nbsp;&nbsp;Themeable</h2>
-  <p class="lead">Customize your own template and implement only the features you care about or try one of the <a href="#">pre-made templates</a>.</p>
+  <p class="lead">Customize your own template and implement only the features you care about.
+     <!-- or try one of the <a href="#">pre-made templates</a>-->.</p>
   <pre>
     <code ng-non-bindable>
       &lt;div>
@@ -73,10 +74,12 @@
       &lt;/div>
     </code>
   </pre>
+  <h2><i class="fa fa-road"></i>&nbsp;&nbsp;Road Map</h2>
+  <p class="lead">Angular Audio Playlist is currently very much a work in progress.  Its implementation is subject to change, however feel free to fork and use as you like.</p>
 </div>
 <div class="footer">
   <h4>ngAudioPlayer</h4>
-  This project was created and maintained by <a style="font-size: 1.2em;" href="http://mountcrystal.com">Mount Crystal</a>.
-  <span class="social-icon"><i style="color: #4099FF;" class="fa fa-twitter fa-3x"></i></span>
-  <span class="social-icon"><i style="" class="fa fa-github fa-3x"></i></span>
+  This project is created and maintained by <a style="font-size: 1.2em;" href="http://philmerrell.com">Phil Merrell</a>.
+  <span class="social-icon"><a href="http://twitter.com/philmerrell" target="_blank"><i style="color: #4099FF;" class="fa fa-twitter fa-3x"></i></a></span>
+  <span class="social-icon"><a href="http://github.com/philbot5000" target="_blank"><i style="color: #666;" class="fa fa-github fa-3x"></i></a></span>
 </div>
