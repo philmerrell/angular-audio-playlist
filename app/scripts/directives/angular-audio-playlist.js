@@ -11,6 +11,7 @@
 
 angular.module('com.philmerrell.audioPlaylist', [])
 
+
   .directive('audioPlaylist', ['audioPlaylistService', function (audioPlaylistService) {
     return {
       templateUrl: 'views/audio-playlist.html',
@@ -22,10 +23,23 @@ angular.module('com.philmerrell.audioPlaylist', [])
       controller: 'audioPlaylistController',
       link: function postLink(scope, element, attrs, audioCtrl) {
 
+        var slider = element.find('input[type="range"]')[0];
+        //console.log(slider);
+
         var audio = element.find('audio')[0];
         scope.audio = audio;
 
         audio.src = scope.currentlyPlaying.src;
+
+        var button = element.find('button');
+
+        button.bind('click', function() {
+
+          audioCtrl.toggleAudio();
+
+        });
+
+        /* AUDIO LISTENERS */
 
         audio.addEventListener('timeupdate', function() {
 
@@ -39,6 +53,8 @@ angular.module('com.philmerrell.audioPlaylist', [])
             scope.percentElapsed = audioCtrl.percentElapsed(d, ct);
 
           });
+
+
         });
 
         audio.addEventListener('playing', function() {
@@ -80,14 +96,27 @@ angular.module('com.philmerrell.audioPlaylist', [])
           });
         });
 
-        var button = element.find('button');
+        var setSliderProgress = function() {
+          var newVal = slider.value / (100 / audio.duration);
 
-        button.bind('click', function() {
+          audio.currentTime = newVal;
+          //console.log('changed');
+        };
 
-          audioCtrl.toggleAudio();
+        slider.addEventListener('change', setSliderProgress, false);
+
+
+
+        slider.addEventListener('input', function() {
+
+          slider.removeEventListener('change', setSliderProgress, false);
+          var newValue = slider.value / (100 / audio.duration);
+          audio.currentTime = newValue;
 
         });
+
         //TODO: More research on third parameter, "objectEquality": http://stackoverflow.com/questions/13594732/maxing-out-on-digest-iterations
+
         scope.$watch(function () { return audioPlaylistService.getPlaylist(); },
           function (newPlaylist) {
             if (typeof newPlaylist !== 'undefined') {
@@ -197,19 +226,25 @@ angular.module('com.philmerrell.audioPlaylist', [])
 
     this.nextTrack = function() {
 
+      var nextTrack = $scope.currentlyPlaying.order + 1;
 
-      if($scope.playlist.length >= $scope.currentlyPlaying.order) {
 
-        var nextTrack = $scope.currentlyPlaying.order + 1;
+      if($scope.playlist.length > nextTrack) {
+
+
+        console.log($scope.playlist[nextTrack]);
 
         $scope.currentlyPlaying = $scope.playlist[nextTrack];
+        $scope.audio.src = $scope.playlist[nextTrack].src;
         $scope.audio.load();
         $scope.audio.play();
 
       } else {
 
-        window.alert('all done');
+        //window.alert('all done');
         $scope.currentlyPlaying = $scope.playlist[0];
+        $scope.audio.src = $scope.playlist[0].src;
+        $scope.audio.currentTime = 0;
         $scope.audio.pause();
 
       }
