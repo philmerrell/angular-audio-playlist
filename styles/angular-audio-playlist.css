@@ -1,4 +1,68 @@
+.audio-btn {
+  background-color: #fff;
+  border: 1px solid #666;
+  border-radius: 30px;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  line-height: 60px;
+}
 
+a.playlist-group-track.active, a.playlist-group-track.active:hover, a.playlist-group-track.active:focus {
+  z-index: 2;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+a.playlist-group-track {
+  color: #555555;
+}
+
+.playlist-group-track {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+
+.playlist-group-track:hover {
+  background-color: #eee;
+}
+
+.playlist-group {
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.playlist-group a {
+  text-decoration: none;
+}
+
+.elapsed {
+  background-color: rgba(0, 255, 0, 0.5);
+  line-height: 10px;
+  height: 10px;
+  position: absolute;
+}
+
+.buffer {
+  background-color: rgba(0, 0, 0, 0.2);
+  line-height: 10px;
+  height: 10px;
+  position: absolute;
+}
+
+.progress-container {
+  position: relative;
+  height: 3px;
+  width: 100%;
+  padding: 0;
+  margin: 0
+
+}
 /* Player controls font icons */
 @font-face {
   font-family: 'font-awesome';
@@ -14,6 +78,7 @@
 [class^="fa-"], [class*=" fa-"] {
   font-family: 'font-awesome';
   speak: none;
+  font-size: 1.2em;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
