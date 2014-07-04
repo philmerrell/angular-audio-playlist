@@ -66,11 +66,11 @@ a.playlist-group-track {
 /* Player controls font icons */
 @font-face {
   font-family: 'player-icons';
-  src:url('../fonts/font-awesome.eot?-lgcqqe');
-  src:url('../fonts/font-awesome.eot?#iefix-lgcqqe') format('embedded-opentype'),
-    url('../fonts/font-awesome.woff?-lgcqqe') format('woff'),
-    url('../fonts/font-awesome.ttf?-lgcqqe') format('truetype'),
-    url('../fonts/font-awesome.svg?-lgcqqe#font-awesome') format('svg');
+  src:url('/fonts/player-icons.eot?-lgcqqe');
+  src:url('/fonts/player-icons.eot?#iefix-lgcqqe') format('embedded-opentype'),
+    url('/fonts/player-icons.woff?-lgcqqe') format('woff'),
+    url('/fonts/player-icons.ttf?-lgcqqe') format('truetype'),
+    url('/fonts/player-icons.svg?-lgcqqe#font-awesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
