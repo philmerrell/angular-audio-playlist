@@ -7,7 +7,7 @@
         <span ng-bind-html="player.buttonIcon"></span>
       </button>
     </div>
-    <div style="float: left;">{{currentlyPlaying.name}}<br/>{{currentlyPlaying.song}}</div>
+    <div style="float: left;">{{currentlyPlaying.name}}<br/><i style="font-size: 0.8em;">{{currentlyPlaying.song}}</i></div>
   </div>
   <div style="width: 100%">
     <span style="">{{currentTime}}</span>
@@ -19,7 +19,7 @@
   </div>
   <div class="playlist-group">
     <a ng-click="playTrack(track)" href="" ng-class="{active: $index == currentlyPlaying.order}" class="playlist-group-track" ng-repeat="track in playlist">
-      {{track.name}} - <i>{{track.song}}</i>
+      {{track.name}} - <i style="font-size: 0.8em;">{{track.song}}</i>
     </a>
   </div>
   <input type="range" name="slider" min="0" ng-model="percentElapsed" max="100">
