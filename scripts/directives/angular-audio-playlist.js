@@ -4,19 +4,18 @@
       - Refactor to override <audio> element and add another directive for a playlist="" attrib
       <audio playlist="myRadPlaylist">
 
-      - Remove directives dependency to Twitter Bootstrap. E.g., Buttons, list-group, list-group-item, active, etc..
-
 */
 'use strict';
 
 angular.module('com.philmerrell.audioPlaylist', [])
 
 
-  .directive('audioPlaylist', ['audioPlaylistService', function (audioPlaylistService) {
+  .directive('audio', ['audioPlaylistService', function (audioPlaylistService) {
     return {
       templateUrl: 'views/audio-playlist.html',
       restrict: 'E',
       replace: true,
+      transclude: 'element',
       scope: {
         playlist: '='
       },
@@ -27,6 +26,9 @@ angular.module('com.philmerrell.audioPlaylist', [])
         //console.log(slider);
 
         var audio = element.find('audio')[0];
+        //var audio = document.createElement('audio');
+        //element.appendChild(audio);
+        console.log(audio);
         scope.audio = audio;
 
         audio.src = scope.currentlyPlaying.src;

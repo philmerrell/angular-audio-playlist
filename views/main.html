@@ -7,7 +7,7 @@
   <h3 class="text-muted">angular-audio-playlist</h3>
 </div>
 <div class="jumbotron">
-  <p><audio-playlist playlist="myRadPlaylist"></audio-playlist></p>
+  <p><audio playlist="myRadPlaylist"></audio></p>
   <div class="">
     <select class="form-control" ng-model="myRadPlaylist" ng-options="playlist.list as playlist.name for playlist in playlists">
       <option value="">Select a Playlist</option>
@@ -19,7 +19,7 @@
   <p class="lead">angular-audio-playlist is easy to implement and use</p>
   <pre>
     <code ng-non-bindable>
-      &lt;audio-playlist playlist="myRadPlaylist">&lt;/audio-playlist></p>
+      &lt;audio playlist="myRadPlaylist">&lt;/audio></p>
 
     </code>
   </pre>
@@ -31,7 +31,7 @@
       angular.module('myApp')
         .controller('SomeCtrl', function ($scope, ngAudioPlayerService) {
 
-          $scope.playThisList = function() {
+          $scope.myRadPlaylist = function() {
 
             audioPlaylistService.setPlaylist([
               {
@@ -71,6 +71,11 @@
         &lt;/div>
         &lt;div>{{currentlyPlaying.name}}&lt;/div>
         &lt;div>{{currentlyPlaying.song}}&lt;/div>
+        &lt;input type="range" name="slider" min="0" ng-model="percentElapsed" max="100">
+        &lt;span>Loaded: {{percentLoaded+'%'}}&lt;/span>
+        &lt;span>Elapsed: {{percentElapsed+'%'}}&lt;/span>
+        &lt;span>{{currentTime}}&lt;/span>
+        &lt;span>{{remainingTime}}&lt;/span>
       &lt;/div>
     </code>
   </pre>

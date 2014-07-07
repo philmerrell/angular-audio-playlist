@@ -13,8 +13,7 @@ angular.module('audioPlaylistApp')
         {order: 7, name: 'Soft White Sixties', song: 'Queen of the Press Club', src: 'http://s3.amazonaws.com/Treefort-Music-Fest/thesoftwhitesixties.mp3'},
         {order: 8, name: 'Pictureplane', song: 'Real is a Feeling', src: 'http://s3.amazonaws.com/Treefort-Music-Fest/pictureplane.mp3'},
         {order: 9, name: 'Blitzen Trapper', song: 'Might Find it Cheap', src: 'http://s3.amazonaws.com/Treefort-Music-Fest/blitzentrapper.mp3'}
-
-    ];
+      ];
 
     $scope.playlists = [
       {
